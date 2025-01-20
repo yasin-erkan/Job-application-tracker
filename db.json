@@ -1,0 +1,33 @@
+{
+  "jobs": [
+    {
+      "position": "Frontend Developer",
+      "company": "Microsoft",
+      "location": "Redmond",
+      "status": "Rejected",
+      "type": "Remote",
+      "id": "d87a9143-58b7-4c65-b0ae-fa18add8c921",
+      "date": 1712307002424,
+      "rejection_date": 1712307002424
+    },
+    {
+      "position": "Product Manager",
+      "company": "IBM",
+      "location": "Redmond",
+      "status": "In Progress",
+      "type": "Part-Time",
+      "id": "5fb295d4-ffe7-48a0-bf1b-a6e4e95020d3",
+      "date": 1716607002428
+    },
+    {
+      "id": "ad6fad18-8a7a-4309-85f9-7fa937b841e0",
+      "position": "Marketing Manager",
+      "company": "Udemig",
+      "location": "Istanbul",
+      "status": "Interview",
+      "type": "Full-Time",
+      "date": 1720552656225,
+      "interview_date": 1720552656225
+    }
+  ]
+}
