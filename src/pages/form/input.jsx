@@ -1,9 +1,12 @@
+import React from "react";
+
 const Input = ({
   label,
   name,
   options,
   type = "text",
-  handleChange = () => {},
+  handleChange,
+  value,
 }) => {
   return (
     <div className="field">
@@ -11,14 +14,19 @@ const Input = ({
 
       {options ? (
         <select name={name} onChange={handleChange}>
-          {options.map((item, index) => (
-            <option key={index} value={item}>
+          {options.map((item) => (
+            <option value={item} selected={item === value}>
               {item}
             </option>
           ))}
         </select>
       ) : (
-        <input name={name} type={type} onChange={handleChange} />
+        <input
+          name={name}
+          type={type}
+          onChange={handleChange}
+          defaultValue={value}
+        />
       )}
     </div>
   );

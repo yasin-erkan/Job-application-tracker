@@ -5,13 +5,13 @@ const Header = () => {
     <header>
       <div className="logo">
         <img src="/logo.png" alt="logo" />
-        <h2>Recruit Bridge</h2>
+        <h2>Is Başvuru Takip</h2>
       </div>
 
       <nav>
-        <NavLink to="/">Applications</NavLink>
+        <NavLink to="/">Başvurular</NavLink>
 
-        <NavLink to="/job/form">New Application</NavLink>
+        <NavLink to="/job/create">Yeni Başvuru</NavLink>
       </nav>
     </header>
   );

@@ -1,82 +1,143 @@
-import Input from "./input";
 import { statusOptions, typeOptions } from "../../utils/constants";
+import Input from "./input";
 import "./form.scss";
 import { useEffect, useState } from "react";
-import api from "./../../utils/api";
+import api from "../../utils/api";
 import { useDispatch } from "react-redux";
-import { createJob } from "../../redux/slices/jobSlice";
+import { createJob, updateJob } from "../../redux/slices/jobSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { getJob } from "../../utils/service";
 
 const Form = () => {
-  const [status, setStatus] = useState("Interview");
+  // sadece status değerini state'de tutuyoruz çünkü seçilen status'e göre tarih inputunun label ve name değerleri değişicek
   const [editItem, setEditItem] = useState(null);
+  const [status, setStatus] = useState(editItem?.status || "Mülakat");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { mode } = useParams();
 
   useEffect(() => {
-    if (!mode === "create") return setEditItem(null);
-    getJob(mode).then((data) => setEditItem(data));
+    // oluşturma modunda: fonksiyon dursun
+    if (mode === "create") return setEditItem(null);
+
+    // güncelleme modunda: elemanın bilgilerini al
+    getJob(mode).then((data) => {
+      setEditItem(data);
+      setStatus(data.status);
+    });
   }, [mode]);
 
+  // form gönderilince
   const handleSubmit = (e) => {
+    // sayfa yenilenmesini engelle
     e.preventDefault();
 
+    // formdaki veirleri bir nesne içersinde kaydet
     const formData = new FormData(e.target);
     const jobData = Object.fromEntries(formData.entries());
 
-    //send an api request
-    api
-      .post("/jobs", jobData)
-      .then((res) => {
-        //infrom Reducer for new application
-        //guide users to the applications page and inform him
-        dispatch(createJob(res.data));
-        navigate("/");
-        toast.success("Application created! ");
-      })
-      .catch((err) => {
-        toast.error("Application built failed!");
-      });
+    // api'a istek at
+    if (!editItem) {
+      api
+        .post("/jobs", jobData)
+        .then((res) => {
+          // reducer'a yeni başvuru oluşturma haberi ver
+          dispatch(createJob(res.data));
+
+          // kullanıcıyı başvurlar sayfasını yönlendir
+          navigate("/");
+
+          // bildirm ver
+          toast.success("Başvuru oluşturuldu");
+        })
+        .catch((err) => {
+          // bildirim ver
+          toast.error("Başvuru oluşturma başarısız");
+        });
+    } else {
+      api
+        .patch(`/jobs/${editItem.id}`, jobData)
+        .then((res) => {
+          // reducer'a yeni başvuru oluşturma haberi ver
+          dispatch(updateJob(res.data));
+
+          // kullanıcıyı başvurlar sayfasını yönlendir
+          navigate("/");
+
+          // bildirm ver
+          toast.success("Güncelleme başarılı");
+        })
+        .catch((err) => {
+          // bildirim ver
+          toast.error("Güncelleme başarısız");
+        });
+    }
   };
+
+  // date alanın name değeri
+  const dateName =
+    editItem?.status === "Mülakat"
+      ? "interview_date"
+      : editItem?.status === "Reddedildi"
+      ? "rejection_date"
+      : "date";
+
+  const dateValue =
+    editItem &&
+    new Date(editItem[dateName])
+      .toISOString()
+      .slice(0, editItem.status === "Mülakat" ? 16 : 10);
 
   return (
     <div className="create-page">
       <section>
-        <h2>Create a new application</h2>
+        <h2>{editItem ? "Başvuruyu Güncelle" : " Yeni Başvuru Oluştur"}</h2>
+
         <form onSubmit={handleSubmit}>
-          <Input label="Position" name="position" />
-          <Input label="Company" name="company" />
-          <Input label="Location" name="location" />
+          <Input label="Pozisyon" name="position" value={editItem?.position} />
+
+          <Input label="Şirket" name="company" value={editItem?.company} />
+
+          <Input label="Lokasyon" name="location" value={editItem?.location} />
+
           <Input
-            label="Status"
+            label="Durum"
             name="status"
             options={statusOptions}
             handleChange={(e) => setStatus(e.target.value)}
+            value={editItem?.status}
           />
-          <Input label="Type" name="type" options={typeOptions} />
+
+          <Input
+            label="Tür"
+            name="type"
+            options={typeOptions}
+            value={editItem?.type}
+          />
+
           <Input
             label={
-              status === "Interview"
-                ? "Interview Date"
-                : status === "Rejected"
-                ? "Rejection Date"
-                : "Application Date"
+              status === "Mülakat"
+                ? "Mülakat Tarihi"
+                : status === "Reddedildi"
+                ? "Reddedilme Tarihi"
+                : "Başvuru Tarihi"
             }
             name={
-              status === "Interview"
+              status === "Mülakat"
                 ? "interview_date"
-                : status === "Rejected"
+                : status === "Reddedildi"
                 ? "rejection_date"
                 : "date"
             }
-            type={status === "Interview" ? "datetime-local" : "date"}
+            type={status === "Mülakat" ? "datetime-local" : "date"}
+            value={dateValue}
           />
+
           <div className="btn-wrapper">
-            <button>Create</button>
+            <button>{editItem ? "Kaydet" : "Oluştur"}</button>
           </div>
         </form>
       </section>

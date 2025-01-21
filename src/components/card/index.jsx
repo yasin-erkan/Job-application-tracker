@@ -1,5 +1,4 @@
-import "./card.scss";
-import moment from "moment/moment";
+import moment from "moment";
 import "./card.scss";
 import { FaMapMarkerAlt as Mark } from "react-icons/fa";
 import { FaCalendarAlt as Calendar } from "react-icons/fa";
@@ -8,17 +7,24 @@ import { Link } from "react-router-dom";
 import { MdEdit } from "react-icons/md";
 
 const Card = ({ job }) => {
+  /* 
+   * Sorun
+   Eğer iş mülakat aşamasındaysa 12 Şubat 2025 * 12:00 yazmalı
+   Eğer devam ediyorsa 3 gün  önce başvuruldu
+   Eğer reddedildiyse 12 Şubat 2025 tarihinde rededildi
+  */
+
   const date =
-    job.status === "In Progress"
+    job.status === "Devam Ediyor"
       ? "Applied " + moment(job.date).fromNow()
-      : job.status === "Rejected"
+      : job.status === "Reddedildi"
       ? "Rejected " +
         new Date(job.rejection_date).toLocaleDateString("en", {
           day: "2-digit",
           month: "short",
         })
-      : "Interview on " +
-        moment(job.interview_date).format("MMMM Do YYYY, h:mm a");
+      : moment(job.interview_date).format("MMMM Do YYYY, h:mm a");
+
   return (
     <div className="card">
       <div className="head">
@@ -34,9 +40,10 @@ const Card = ({ job }) => {
         </div>
 
         <div className="buttons">
-          <Link to={`/job/${job.id}`} className="delete">
+          <Link to={`/job/${job.id}`} className="edit">
             <MdEdit />
           </Link>
+
           <DeleteButton id={job.id} />
         </div>
       </div>

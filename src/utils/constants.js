@@ -1,3 +1,3 @@
-export const statusOptions = ["Interview", "In Progress", "Rejected"];
+export const statusOptions = ["Mülakat", "Devam Ediyor", "Reddedildi"];
 
-export const typeOptions = ["Full-Time", "Part-Time", "Remote"];
+export const typeOptions = ["Tam Zamanlı", "Yarı Zamanlı", "Uzaktan", "Staj"];

@@ -8,6 +8,7 @@
   .head {
     display: flex;
     justify-content: space-between;
+
     & > div {
       display: flex;
       gap: 15px;
@@ -41,7 +42,7 @@
     }
 
     .icon {
-      color: rgba(119, 114, 112, 0.877);
+      color: rgba(255, 255, 255, 0.536);
     }
 
     .loc {
@@ -65,8 +66,7 @@
       }
 
       .type {
-        background: rgb(56, 50, 50);
-        color: rgba(6, 219, 212, 0.943);
+        background: rgb(77, 76, 76);
         padding: 5px 10px;
         border-radius: 6px;
         font-size: 15px;
@@ -78,16 +78,15 @@
   .buttons {
     display: flex;
     align-items: center;
-    gap: 5px;
 
     .delete,
     .edit {
-      color: #e7e0e0;
+      color: #797777;
       transition: color 0.3s;
       cursor: pointer;
 
       &:hover {
-        color: rgb(44, 29, 29);
+        color: white;
       }
     }
   }

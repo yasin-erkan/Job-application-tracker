@@ -1,5 +1,5 @@
 import { FaTrashAlt } from "react-icons/fa";
-import api from "./../../utils/api";
+import api from "../../utils/api";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { deleteJob } from "../../redux/slices/jobSlice";
@@ -7,18 +7,25 @@ import { deleteJob } from "../../redux/slices/jobSlice";
 const DeleteButton = ({ id }) => {
   const dispatch = useDispatch();
 
+  // butona tıklanınca
   const handleDelete = () => {
-    if (!confirm("Are sure about deleting this application?")) return;
+    if (!confirm("Silmek istediğiniz emin misiniz?")) return;
+
     api
       .delete(`/jobs/${id}`)
       .then(() => {
+        // kaldırılma olayını reducer'a haber ver
         dispatch(deleteJob(id));
-        toast.success("Application removed from the list!");
+
+        // bildirim gönder
+        toast.success("Başvuru listeden kaldırıldı");
       })
       .catch((err) => {
-        toast.error("There should be a problem!");
+        // bildirim gönder
+        toast.error("Başvuru silinirken bir hata oluştu");
       });
   };
+
   return (
     <button className="delete" onClick={handleDelete}>
       <FaTrashAlt />

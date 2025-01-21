@@ -3,31 +3,49 @@
     {
       "position": "Frontend Developer",
       "company": "Microsoft",
-      "location": "Redmond",
-      "status": "Rejected",
-      "type": "Remote",
+      "location": "ISTABNBUBL",
+      "status": "Reddedildi",
+      "type": "Uzaktan",
       "id": "d87a9143-58b7-4c65-b0ae-fa18add8c921",
       "date": 1712307002424,
-      "rejection_date": 1712307002424
+      "rejection_date": "2024-04-05"
     },
     {
-      "position": "Product Manager",
-      "company": "IBM",
-      "location": "Redmond",
-      "status": "In Progress",
-      "type": "Part-Time",
-      "id": "5fb295d4-ffe7-48a0-bf1b-a6e4e95020d3",
-      "date": 1716607002428
+      "position": "Data Scientist",
+      "company": "Microsoft",
+      "location": "Menlo Park",
+      "status": "Devam Ediyor",
+      "type": "Yarı Zamanlı",
+      "id": "ec72d702-ff65-46e4-bc4c-0ee6d3660913",
+      "date": 1715607078538
     },
     {
-      "id": "ad6fad18-8a7a-4309-85f9-7fa937b841e0",
-      "position": "Marketing Manager",
+      "position": "Data Scientist",
+      "company": "Microsoft",
+      "location": "Menlo Park",
+      "status": "Mülakat",
+      "type": "Tam Zamanlı",
+      "id": "7fb211e4-a53e-4804-b949-9a3d25b8e67c",
+      "date": 1712608152577,
+      "interview_date": 1712608152577
+    },
+    {
+      "position": "DATA Scienetist",
       "company": "Udemig",
       "location": "Istanbul",
-      "status": "Interview",
-      "type": "Full-Time",
-      "date": 1720552656225,
-      "interview_date": 1720552656225
+      "status": "Reddedildi",
+      "type": "Tam Zamanlı",
+      "rejection_date": "2025-01-10",
+      "id": "7ihXG91"
+    },
+    {
+      "position": "Data Screintist",
+      "company": "UDEMIG",
+      "location": "IZMIR",
+      "status": "Devam Ediyor",
+      "type": "Uzaktan",
+      "date": "2025-01-24",
+      "id": "p6YeD4d"
     }
   ]
 }

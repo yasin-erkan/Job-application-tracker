@@ -20,19 +20,32 @@ const jobSlice = createSlice({
       state.error = null;
       state.jobs = payload;
     },
+
     createJob: (state, { payload }) => {
       state.jobs.push(payload);
     },
+
     deleteJob: (state, { payload }) => {
-      const index = state.jobs.findIndex((i) => i.id === payload); 
-      if (index !== -1) {
-        state.jobs.splice(index, 1); 
-      }
+      const index = state.jobs.findIndex((i) => i.id === payload);
+
+      state.jobs.splice(index, 1);
+    },
+
+    updateJob: (state, { payload }) => {
+      const index = state.jobs.findIndex((i) => i.id === payload.id);
+
+      state.jobs.splice(index, 1, payload);
     },
   },
 });
 
-export const { setLoading, setError, setJobs, createJob, deleteJob } =
-  jobSlice.actions;
+export const {
+  setLoading,
+  setError,
+  setJobs,
+  createJob,
+  deleteJob,
+  updateJob,
+} = jobSlice.actions;
 
 export default jobSlice.reducer;
