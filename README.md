@@ -23,17 +23,8 @@ Built with a seamless integration of powerful tools and technologies:
   - 🌀 **TailwindCSS**: Modern, utility-first styling.  
 - **State Management**:  
   - 🗂️ **Redux**: Centralized and predictable state management.  
-- **Backend**:  
-  - 🟢 **Node.js**: High-performance server-side logic.  
-  - ⚡ **Express.js**: Lightweight and robust API creation.  
-- **Database**:  
-  - 🍃 **MongoDB**: Flexible NoSQL database.  
-  - 🔗 **Mongoose**: Elegant MongoDB object modeling.  
+ 
 - **Additional Tools**:  
   - 🔧 **Axios**: Simplified HTTP requests.  
-  - 📏 **ESLint & Prettier**: Ensure clean and consistent code.  
-  - 🔄 **Jenkins**: Automate builds and deployments.  
-  - ✨ **Next.js**: Server-side rendering and static site generation.  
-  - 📱 **React Native**: Mobile app compatibility (future integration).
 
 
